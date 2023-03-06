@@ -49,11 +49,11 @@ else:
 ## Keymap Assignment 
 keyboard.keymap = [
     [
-        KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.C,     KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.D, 
-        KC.N1,   KC.N2,   KC.N3,  KC.N4, KC.N5,  KC.N6,    KC.N7,   KC.N8,   KC.N9,  KC.N0, KC.A,   KC.B,
-        KC.D,    KC.E,    KC.F,   KC.G,  KC.H,   KC.I,     KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.C,
-        KC.J,    KC.K,    KC.L,   KC.M,  KC.N,   KC.O,     KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.C, 
-        KC.P,    KC.Q,    KC.R,   KC.S,  KC.T,   KC.U,     KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.C, 
+        KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.C,                                           KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.D, 
+        KC.N1,   KC.N2,   KC.N3,  KC.N4, KC.N5,  KC.N6,                                          KC.N7,   KC.N8,   KC.N9,  KC.N0, KC.A,   KC.B,
+        KC.D,    KC.E,    KC.F,   KC.G,  KC.H,   KC.I,                                           KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.C,
+        KC.J,    KC.K,    KC.L,   KC.M,  KC.N,   KC.O,                                           KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.C, 
+                          KC.P,    KC.Q, KC.R,   KC.S,  KC.T,   KC.U,          KC.N7,   KC.N8,   KC.N9,   KC.A,    KC.B,   KC.C,
     ]
 ]
 
