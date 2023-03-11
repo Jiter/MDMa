@@ -16,9 +16,22 @@ from kmk.extensions.rgb import AnimationModes
 
 ## Initialize Keyboard Object 
 keyboard = KMKKeyboard()
+keyboard.debug_enabled = True
 keyboard.diode_orientation = DiodeOrientation.ROW2COL
 
 side = SplitSide.RIGHT if str(getmount('/').label)[-1] == 'R' else SplitSide.LEFT
+tx = board.D0 # TX0
+rx = board.D1 # Rx0
+
+## Pin Assignments
+keyboard.col_pins = (board.D2, board.D3, board.D4, board.D6, board.D7, board.D8)
+rgb_pixel_pin = board.A3
+if split.split_side == SplitSide.RIGHT:
+    print("R")
+    keyboard.row_pins = (board.D9, board.A2, board.A1, board.A0, board.D10)
+else:
+    print("L")
+    keyboard.row_pins = (board.D9, board.A3, board.A2, board.A0, board.NEOPIXEL)
 
 ## Setup Split-Module
 split = Split(
@@ -27,24 +40,11 @@ split = Split(
     split_type=SplitType.UART,  # Defaults to UART
     split_target_left=False,  # Assumes that left will be the one on USB. Set to False if it will be the right
     uart_interval=20,  # Sets the uarts delay. Lower numbers draw more power
-    data_pin=None,  # The primary data pin to talk to the secondary device with
-    data_pin2=None,  # Second uart pin to allow 2 way communication
+    data_pin=rx,  # The primary data pin to talk to the secondary device with
+    data_pin2=tx,  # Second uart pin to allow 2 way communication
     uart_flip=True,  # Reverses the RX and TX pins if both are provided
     use_pio=False,  # Use RP2040 PIO implementation of UART. Required if you want to use other pins than RX/TX
 )
-
-
-## Pin Assignments
-if split.split_side == SplitSide.RIGHT:
-    print("R")
-    keyboard.col_pins = (board.D5, board.D6, board.D7, board.D8, board.D9, board.D10)
-    keyboard.row_pins = (board.D0, board.D1, board.D2, board.D3, board.D4)
-    rgb_pixel_pin = board.A3
-else:
-    print("L")
-    keyboard.col_pins = (board.D5, board.D6, board.D7, board.D8, board.D9, board.D10)
-    keyboard.row_pins = (board.D0, board.D1, board.D2, board.D3, board.D4)
-    rgb_pixel_pin = board.A3
 
 ## Keymap Assignment 
 keyboard.keymap = [
@@ -91,5 +91,5 @@ rgb = RGB(pixel_pin=rgb_pixel_pin,
 keyboard.extensions.append(rgb)
 
 if __name__ == '__main__':
-    keyboard.debug_enabled = True
+
     keyboard.go(hid_type=HIDModes.USB)
