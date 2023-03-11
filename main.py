@@ -23,17 +23,6 @@ side = SplitSide.RIGHT if str(getmount('/').label)[-1] == 'R' else SplitSide.LEF
 tx = board.D0 # TX0
 rx = board.D1 # Rx0
 
-## Pin Assignments
-keyboard.col_pins = (board.D2, board.D3, board.D4, board.D6, board.D7, board.D8)
-rgb_pixel_pin = board.A3
-if split.split_side == SplitSide.RIGHT:
-    print("R")
-    # board.NEOPIXEL is a dummy
-    keyboard.row_pins = (board.D9, board.A2, board.A1, board.A0, board.D10, board.NEOPIXEL)
-else:
-    print("L")
-    keyboard.row_pins = (board.D9, board.A3, board.A2, board.A1, board.A0, board.SCK)
-
 ## Setup Split-Module
 split = Split(
     split_flip=False,  # If both halves are the same, but flipped, set this True
@@ -46,6 +35,17 @@ split = Split(
     uart_flip=True,  # Reverses the RX and TX pins if both are provided
     use_pio=False,  # Use RP2040 PIO implementation of UART. Required if you want to use other pins than RX/TX
 )
+
+## Pin Assignments
+keyboard.col_pins = (board.D2, board.D3, board.D4, board.D6, board.D7, board.D8)
+rgb_pixel_pin = board.A3
+if split.split_side == SplitSide.RIGHT:
+    print("R")
+    # board.NEOPIXEL is a dummy
+    keyboard.row_pins = (board.D9, board.A2, board.A1, board.A0, board.D10, board.NEOPIXEL)
+else:
+    print("L")
+    keyboard.row_pins = (board.D9, board.A3, board.A2, board.A1, board.A0, board.SCK)
 
 ## Keymap Assignment 
 keyboard.keymap = [
@@ -94,3 +94,4 @@ keyboard.extensions.append(rgb)
 if __name__ == '__main__':
 
     keyboard.go(hid_type=HIDModes.USB)
+
