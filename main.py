@@ -47,25 +47,28 @@ else:
     print("L")
     keyboard.row_pins = (board.D9, board.A3, board.A2, board.A1, board.A0, board.SCK)
 
-## Keymap Assignment 
-keyboard.keymap = [
-    [
-        KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.C,                                           KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.D, 
-        KC.N1,   KC.N2,   KC.N3,  KC.N4, KC.N5,  KC.N6,                                          KC.N7,   KC.N8,   KC.N9,  KC.N0, KC.A,   KC.B,
-        KC.D,    KC.E,    KC.F,   KC.G,  KC.H,   KC.I,                                           KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.C,
-        KC.J,    KC.K,    KC.L,   KC.M,  KC.N,   KC.O,                                           KC.N7,   KC.N8,   KC.N9,  KC.A,  KC.B,   KC.C, 
-                          KC.P,    KC.Q, KC.R,   KC.S,  KC.T,   KC.U,          KC.N7,   KC.N8,   KC.N9,   KC.A,    KC.B,   KC.C,
-    ]
-]
 
 ## Coordination Mapping for MDMa
 keyboard.coord_mapping = [
-    35, 34, 33, 32, 31, 30,    0,  1,  2,  3,  4,  5,
-    41, 40, 39, 38, 37, 36,    6,  7,  8,  9, 10, 11,
-    47, 46, 45, 44, 43, 42,    12, 13, 14, 15, 16, 17,
-    53, 52, 51, 50, 49, 48,    18, 19, 20, 21, 22, 23,
-    59, 58, 57, 56, 55, 54,    24, 25, 29, 28, 26, 27,
+     0,  1,  2,  3,  4,  5,     36, 37, 38, 39, 40, 41,
+     6,  7,  8,  9, 10, 11,     42, 43, 44, 45, 46, 47,
+    12, 13, 14, 15, 16, 17,     48, 49, 50, 51, 52, 53,
+    18, 19, 20, 21, 22, 23,     54, 55, 56, 57, 58, 59,
+            26, 27,                     62, 63,
+    30, 31, 32, 33, 34, 35,     60, 61, 65, 64
+];
+
+## Keymap Assignment
+keyboard.keymap = [
+[
+    KC.A, KC.B, KC.C, KC.D, KC.E, KC.F,         KC.G, KC.H, KC.I, KC.J, KC.K, KC.L,
+    KC.M, KC.N, KC.O, KC.P, KC.Q, KC.R,         KC.S, KC.T, KC.U, KC.V, KC.W, KC.X,
+    KC.A, KC.B, KC.C, KC.D, KC.E, KC.F,         KC.G, KC.H, KC.I, KC.J, KC.K, KC.L,
+    KC.M, KC.N, KC.O, KC.P, KC.Q, KC.R,         KC.S, KC.T, KC.U, KC.V, KC.W, KC.X,
+                KC.Y, KC.Z,                                 KC.N1, KC.N2,
+    KC.N3, KC.N4, KC.N5, KC.N6, KC.N7, KC.N8,   KC.A, KC.B, KC.C, KC.D
 ]
+];
 
 keyboard.modules.append(split)
 
