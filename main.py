@@ -91,5 +91,5 @@ rgb = RGB(pixel_pin=rgb_pixel_pin,
 keyboard.extensions.append(rgb)
 
 if __name__ == '__main__':
-
+    keyboard.debug_enabled = True
     keyboard.go(hid_type=HIDModes.USB)
