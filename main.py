@@ -31,7 +31,7 @@ if split.split_side == SplitSide.RIGHT:
     keyboard.row_pins = (board.D9, board.A2, board.A1, board.A0, board.D10)
 else:
     print("L")
-    keyboard.row_pins = (board.D9, board.A3, board.A2, board.A0, board.NEOPIXEL)
+    keyboard.row_pins = (board.D9, board.A3, board.A2, board.A1, board.A0, board.NEOPIXEL)
 
 ## Setup Split-Module
 split = Split(
