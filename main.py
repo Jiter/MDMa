@@ -38,11 +38,31 @@ split = Split(
 
 ## Pin Assignments
 keyboard.col_pins = (board.D2, board.D3, board.D4, board.D6, board.D7, board.D8)
-rgb_pixel_pin = board.A3
 if split.split_side == SplitSide.RIGHT:
     print("R")
     # board.NEOPIXEL is a dummy
     keyboard.row_pins = (board.D9, board.A2, board.A1, board.A0, board.D10, board.NEOPIXEL)
+
+    rgb_pixel_pin = board.A3
+    ## Setup RGB Module
+    rgb = RGB(pixel_pin=rgb_pixel_pin,
+            num_pixels=30,
+            val_limit=25,
+            hue_default=160,
+            sat_default=255,
+            rgb_order=(1, 0, 2),  # GRB WS2812
+            val_default=20,
+            hue_step=5,
+            sat_step=5,
+            val_step=1,
+            animation_speed=1,
+            breathe_center=1.5,  # 1.0-2.7
+            knight_effect_length=3,
+            animation_mode=AnimationModes.BREATHING,
+            reverse_animation=False,
+            refresh_rate=60,
+            )
+    keyboard.extensions.append(rgb)
 else:
     print("L")
     keyboard.row_pins = (board.D9, board.A3, board.A2, board.A1, board.A0, board.SCK)
@@ -71,28 +91,6 @@ keyboard.keymap = [
 ];
 
 keyboard.modules.append(split)
-
-
-## Setup RGB Module
-rgb = RGB(pixel_pin=rgb_pixel_pin,
-        num_pixels=30,
-        val_limit=25,
-        hue_default=160,
-        sat_default=255,
-        rgb_order=(1, 0, 2),  # GRB WS2812
-        val_default=20,
-        hue_step=5,
-        sat_step=5,
-        val_step=1,
-        animation_speed=1,
-        breathe_center=1.5,  # 1.0-2.7
-        knight_effect_length=3,
-        animation_mode=AnimationModes.BREATHING,
-        reverse_animation=False,
-        refresh_rate=60,
-        )
-
-keyboard.extensions.append(rgb)
 
 if __name__ == '__main__':
 
