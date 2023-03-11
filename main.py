@@ -10,6 +10,10 @@ from kmk.hid import HIDModes
 from kmk.modules.split import Split, SplitType, SplitSide
 from storage import getmount
 
+## Load Extensions for Keymap
+from kmk.modules.layers import Layers
+from kmk.keys import KC
+
 ## Load OLED Extensions
 from kmk.extensions.peg_oled_Display import Oled, OledDisplayMode, OledReactionType, OledData
 
@@ -61,6 +65,23 @@ keyboard.coord_mapping = [
 ];
 
 ## Keymap Assignment
+keyboard.modules.append(Layers())
+
+# Cleaner key names
+_______ = KC.TRNS
+XXXXXXX = KC.NO
+
+LOWER = KC.MO(1)
+RAISE = KC.MO(2)
+ADJUST = KC.LT(3, KC.SPC)
+BRWSFW = KC.LALT(KC.RIGHT)
+BRWSBW = KC.LALT(KC.LEFT)
+UNDO = KC.LCTL(KC.Z)
+CUT = KC.LCTL(KC.X)
+COPY = KC.LCTL(KC.C)
+PASTE = KC.LCTL(KC.V)
+DEL = KC.LSFT(KC.DEL)
+
 keyboard.keymap = [
     [
         KC.A, KC.B, KC.C, KC.D, KC.E, KC.F,         KC.G, KC.H, KC.I, KC.J, KC.K, KC.L,
@@ -68,7 +89,23 @@ keyboard.keymap = [
         KC.A, KC.B, KC.C, KC.D, KC.E, KC.F,         KC.G, KC.H, KC.I, KC.J, KC.K, KC.L,
         KC.M, KC.N, KC.O, KC.P, KC.Q, KC.R,         KC.S, KC.T, KC.U, KC.V, KC.W, KC.X,
                     KC.Y, KC.Z,                                 KC.N1, KC.N2,
-        KC.N3, KC.N4, KC.N5, KC.N6, KC.N7, KC.N8,   KC.A, KC.B, KC.C, KC.D
+        KC.N3, KC.N4, KC.N5, KC.N6, KC.N7, KC.N8,   LOWER, _______, KC.C, KC.D
+    ],
+    [
+        KC.A, KC.B, KC.C, KC.D, KC.E, KC.F,         KC.G, KC.H, KC.I, KC.J, KC.K, KC.L,
+        KC.M, KC.N, KC.O, KC.P, KC.Q, KC.R,         KC.S, KC.T, KC.U, KC.V, KC.W, KC.X,
+        KC.A, KC.B, KC.C, KC.D, KC.E, KC.F,         KC.G, KC.H, KC.I, KC.J, KC.K, KC.L,
+        KC.M, KC.N, KC.O, KC.P, KC.Q, KC.R,         KC.S, KC.T, KC.U, KC.V, KC.W, KC.X,
+                    KC.Y, KC.Z,                                 KC.N1, KC.N2,
+        KC.N3, KC.N4, KC.N5, KC.N6, KC.N7, KC.N8,   KC.TRNS, RAISE, KC.C, KC.D
+    ],
+    [
+        KC.A, KC.B, KC.C, KC.D, KC.E, KC.F,         KC.G, KC.H, KC.I, KC.J, KC.K, KC.L,
+        KC.M, KC.N, KC.O, KC.P, KC.Q, KC.R,         KC.S, KC.T, KC.U, KC.V, KC.W, KC.X,
+        KC.A, KC.B, KC.C, KC.D, KC.E, KC.F,         KC.G, KC.H, KC.I, KC.J, KC.K, KC.L,
+        KC.M, KC.N, KC.O, KC.P, KC.Q, KC.R,         KC.S, KC.T, KC.U, KC.V, KC.W, KC.X,
+                    KC.Y, KC.Z,                                 KC.N1, KC.N2,
+        KC.N3, KC.N4, KC.N5, KC.N6, KC.N7, KC.N8,   KC.TRNS, LOWER, KC.C, KC.D
     ]
 ];
 
@@ -103,7 +140,7 @@ rgb = RGB(pixel_pin=rgb_pixel_pin,
         animation_speed=1,
         breathe_center=1.5,  # 1.0-2.7
         knight_effect_length=3,
-        animation_mode=AnimationModes.BREATHING,
+        animation_mode=AnimationModes.STATIC,
         reverse_animation=False,
         refresh_rate=60,
         )
