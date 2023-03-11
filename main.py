@@ -32,15 +32,15 @@ split = Split(
     uart_interval=20,  # Sets the uarts delay. Lower numbers draw more power
     data_pin=rx,  # The primary data pin to talk to the secondary device with
     data_pin2=tx,  # Second uart pin to allow 2 way communication
-    uart_flip=True,  # Reverses the RX and TX pins if both are provided
+    uart_flip=False,  # Reverses the RX and TX pins if both are provided
     use_pio=False,  # Use RP2040 PIO implementation of UART. Required if you want to use other pins than RX/TX
 )
 
 ## Pin Assignments
-keyboard.col_pins = (board.D2, board.D3, board.D4, board.D6, board.D7, board.D8)
 if split.split_side == SplitSide.RIGHT:
     print("R")
-    # board.NEOPIXEL is a dummy
+    keyboard.col_pins = (board.D2, board.D3, board.D4, board.D6, board.D7, board.D8)
+    # board.NEOPIXEL is a dummy to have matching product of rows and columns (requirement for split!)
     keyboard.row_pins = (board.D9, board.A2, board.A1, board.A0, board.D10, board.NEOPIXEL)
 
     rgb_pixel_pin = board.A3
@@ -65,6 +65,7 @@ if split.split_side == SplitSide.RIGHT:
     keyboard.extensions.append(rgb)
 else:
     print("L")
+    keyboard.col_pins = (board.D8, board.D7, board.D6, board.D4, board.D3, board.D2)
     keyboard.row_pins = (board.D9, board.A3, board.A2, board.A1, board.A0, board.SCK)
 
 
@@ -74,8 +75,8 @@ keyboard.coord_mapping = [
      6,  7,  8,  9, 10, 11,     42, 43, 44, 45, 46, 47,
     12, 13, 14, 15, 16, 17,     48, 49, 50, 51, 52, 53,
     18, 19, 20, 21, 22, 23,     54, 55, 56, 57, 58, 59,
-            26, 27,                     62, 63,
-    30, 31, 32, 33, 34, 35,     60, 61, 65, 64
+            27, 26,                     62, 63,
+    30, 31, 33, 35, 32, 34,     60, 61, 65, 64
 ];
 
 ## Keymap Assignment
