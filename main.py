@@ -28,10 +28,11 @@ keyboard.col_pins = (board.D2, board.D3, board.D4, board.D6, board.D7, board.D8)
 rgb_pixel_pin = board.A3
 if split.split_side == SplitSide.RIGHT:
     print("R")
-    keyboard.row_pins = (board.D9, board.A2, board.A1, board.A0, board.D10)
+    # board.NEOPIXEL is a dummy
+    keyboard.row_pins = (board.D9, board.A2, board.A1, board.A0, board.D10, board.NEOPIXEL)
 else:
     print("L")
-    keyboard.row_pins = (board.D9, board.A3, board.A2, board.A1, board.A0, board.NEOPIXEL)
+    keyboard.row_pins = (board.D9, board.A3, board.A2, board.A1, board.A0, board.SCK)
 
 ## Setup Split-Module
 split = Split(
